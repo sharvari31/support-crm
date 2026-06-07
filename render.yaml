@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: support-crm
+    runtime: node
+    rootDir: backend
+    buildCommand: cd ../frontend && npm install && npm run build && cp -r dist ../backend/dist
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
