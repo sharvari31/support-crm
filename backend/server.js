@@ -153,4 +153,12 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+// Keep alive ping - prevents Render from sleeping
+const https = require('https')
+setInterval(() => {
+  https.get('https://support-crm-t4cs.onrender.com/api', () => {
+    console.log('Keep alive ping sent')
+  }).on('error', () => {})
+}, 5 * 60 * 1000)
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
